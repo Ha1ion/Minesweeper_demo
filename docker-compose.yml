@@ -1,0 +1,7 @@
+version: '3'
+services:
+  minesweeper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: minesweeper-game 
