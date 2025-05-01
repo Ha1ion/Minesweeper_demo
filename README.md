@@ -1,3 +1,113 @@
+# Minesweeper Module
+
+This is a core logic module for a Minesweeper game, providing functionality for board generation and handling the first click. The module focuses on mine placement and ensuring the safety rules for the first click, serving as a fundamental component for Minesweeper games.
+
+## Features
+
+- Create a board with specified size and number of mines
+- Ensure the first click position is not a mine
+- Calculate the number of mines around each cell
+- Provide methods to access board information
+
+## Requirements
+
+- Java 8 or higher
+- Or Docker (for containerized operation)
+
+## How to Use
+
+### Method 1: Direct Java Execution
+
+#### Compile and Run
+
+```bash
+# Compile
+javac Minesweeper.java
+
+# Run
+java Minesweeper
+```
+
+### Method 2: Using Docker
+
+If you don't have Java installed on your system, you can use Docker to run this module:
+
+```bash
+# Build Docker image
+docker build -t minesweeper-game .
+
+# Run Docker container
+docker run --rm minesweeper-game
+```
+
+Or using docker-compose:
+
+```bash
+# Build and run with docker-compose
+docker-compose up --build
+```
+
+### Integrating the Module into Your Project
+
+1. Copy `Minesweeper.java` to your project directory
+2. Create a `Minesweeper` object, setting the number of rows, columns, and mines
+3. Call the `generateBoard` method, passing the coordinates of the first click
+4. Use the provided methods to get board information
+
+### Usage Example
+
+```java
+// Create a 10x10 board with 15 mines
+Minesweeper game = new Minesweeper(10, 10, 15);
+
+// Generate the board, with first click position at (3, 4)
+game.generateBoard(3, 4);
+
+// Get the list of mine positions
+List<int[]> minePositions = game.getMinePositions();
+
+// Check if a specific position contains a mine
+boolean isMine = game.isMine(5, 6);
+
+// Get the number of mines around a specific position
+int mineCount = game.getMineCount(2, 2);
+
+// Print the board
+game.printBoard(true); // Show mines
+```
+
+## API Documentation
+
+### Constructor
+
+- `Minesweeper(int rows, int cols, int totalMines)` - Create a new Minesweeper game
+
+### Main Methods
+
+- `void generateBoard(int firstClickRow, int firstClickCol)` - Generate the board, ensuring the first click position is not a mine
+- `List<int[]> getMinePositions()` - Get a list of all mine positions
+- `boolean isMine(int row, int col)` - Check if a specified position contains a mine
+- `int getMineCount(int row, int col)` - Get the number of mines around a specified position
+- `void printBoard(boolean showMines)` - Print the board, with the option to show mines
+
+### Other Methods
+
+- `int getRows()` - Get the number of rows on the board
+- `int getCols()` - Get the number of columns on the board
+- `int getTotalMines()` - Get the total number of mines
+
+## Testing
+
+The module includes multiple test cases. Running the `main` method allows you to view board generation results in different scenarios and verify the safety of the first click.
+
+## Docker Container Details
+
+- `Dockerfile` - Defines the steps for building the Docker image
+- `entrypoint.sh` - Script executed when the container starts
+- `docker-compose.yml` - Simplifies building and running the Docker container
+
+---
+
 # 踩地雷模組
 
 這是一個踩地雷遊戲的核心邏輯模組，提供生成棋盤與處理第一次點擊的功能。此模組專注於地雷的放置與確保第一次點擊的安全規則，可作為踩地雷遊戲的基礎組件。
